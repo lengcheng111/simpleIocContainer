@@ -6,11 +6,10 @@ import java.util.List;
 public class Bean {
 	private String id;
 	private String clazz;
-	private List<Property> properties = new ArrayList<Property>();
+	private List<Property> properties = new ArrayList<>();
 
 	public Bean() {
 		super();
-		// TODO Auto-generated constructor stub
 	}
 
 	public Bean(String id, String clazz) {

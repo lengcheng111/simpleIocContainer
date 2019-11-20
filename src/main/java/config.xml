@@ -2,7 +2,6 @@
 <beans>
 	<bean id="storeService" class="com.service.ProductService">
 		<property name="productRepository" ref="productRepository" />
-		<property name="name" value="choi choi vui vui"/>
 	</bean>
 	<bean id="productRepository" class="com.repository.ProductRepository" />
 </beans>

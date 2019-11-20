@@ -1,6 +1,5 @@
 package com.parser;
 
-import java.io.IOException;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.HashMap;
@@ -9,13 +8,8 @@ import java.util.Map;
 import java.util.Optional;
 import java.util.stream.Stream;
 
-import javax.xml.parsers.ParserConfigurationException;
 import javax.xml.parsers.SAXParser;
 import javax.xml.parsers.SAXParserFactory;
-
-import org.xml.sax.SAXException;
-
-import com.service.ProductService;
 
 public class BeanFactory {
 	private String configFile;
@@ -23,13 +17,6 @@ public class BeanFactory {
 
 	public BeanFactory(String configFile) {
 		this.configFile = configFile;
-	}
-
-	public static void main(String[] args) throws ParserConfigurationException, SAXException, IOException {
-		final BeanFactory beanFactory = new BeanFactory("config.xml");
-		final String serviceName = "storeService";
-		final ProductService parse = (ProductService) beanFactory.createBean(serviceName);
-		System.out.println(parse.getProducts());
 	}
 
 	public Object getBean(String name) {

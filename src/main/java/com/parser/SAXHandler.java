@@ -3,23 +3,20 @@ package com.parser;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.xml.parsers.SAXParser;
-import javax.xml.parsers.SAXParserFactory;
-
 import org.xml.sax.Attributes;
 import org.xml.sax.SAXException;
 import org.xml.sax.helpers.DefaultHandler;
 
 public class SAXHandler extends DefaultHandler {
 
-	private List<Bean> beans = new ArrayList<Bean>();
+	private List<Bean> beans = new ArrayList<>();
 	private Bean bean;
 	private Property property;
-	List<Property> properties = new ArrayList<Property>();
-	String content = null;
+	private List<Property> properties = new ArrayList<>();
+	private String content = null;
 
 	public BeanObject getBeanObject() {
-		BeanObject beanObj = new BeanObject();
+		final BeanObject beanObj = new BeanObject();
 		beanObj.setBeans(beans);
 		return beanObj;
 	}
@@ -28,14 +25,13 @@ public class SAXHandler extends DefaultHandler {
 	public void startElement(String uri, String localName, String qName, Attributes attributes) throws SAXException {
 		super.startElement(uri, localName, qName, attributes);
 		if ("bean".equals(qName)) {
-			String id = attributes.getValue("id");
-			String clazz = attributes.getValue("class");
+			final String id = attributes.getValue("id");
+			final String clazz = attributes.getValue("class");
 			bean = new Bean(id, clazz);
 		} else if ("property".equals(qName)) {
-			String name = attributes.getValue("name");
-			String ref = attributes.getValue("ref");
-			String value = attributes.getValue("value");
-			property = new Property(name, ref, value);
+			final String ref = attributes.getValue("ref");
+			final String value = attributes.getValue("value");
+			property = new Property(ref, value);
 		}
 	}
 
@@ -51,21 +47,7 @@ public class SAXHandler extends DefaultHandler {
 
 	@Override
 	public void characters(char[] ch, int start, int length) throws SAXException {
-		// TODO Auto-generated method stub
-		super.characters(ch, start, length);
 		content = String.copyValueOf(ch, start, length).trim();
-	}
-
-	public static void main(String[] args) {
-		SAXParserFactory saxParserFactory = SAXParserFactory.newInstance();
-		try {
-			SAXParser saxParser = saxParserFactory.newSAXParser();
-			SAXHandler handler = new SAXHandler();
-			saxParser.parse(ClassLoader.getSystemResourceAsStream("config.xml"), handler);
-			System.out.println(handler);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
 	}
 
 	@Override

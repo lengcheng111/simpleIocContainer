@@ -1,7 +1,6 @@
 package com.parser;
 
 public class Property {
-	private String name;
 	private String ref;
 	private String value;
 
@@ -10,19 +9,10 @@ public class Property {
 		// TODO Auto-generated constructor stub
 	}
 
-	public Property(String name, String ref, String value) {
+	public Property(String ref, String value) {
 		super();
-		this.name = name;
 		this.ref = ref;
 		this.value = value;
-	}
-
-	public String getName() {
-		return name;
-	}
-
-	public void setName(String name) {
-		this.name = name;
 	}
 
 	public String getRef() {
@@ -43,7 +33,7 @@ public class Property {
 
 	@Override
 	public String toString() {
-		return "Property [name=" + name + ", ref=" + ref + ", value=" + value + "]";
+		return "Property [ref=" + ref + ", value=" + value + "]";
 	}
 
 }
